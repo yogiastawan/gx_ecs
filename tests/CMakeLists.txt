@@ -9,3 +9,8 @@ add_executable(test_comp_2 test_comp_2.c)
 target_link_libraries(test_comp_2 ${PROJECT_NAME})
 target_include_directories(test_comp_2 PRIVATE CMAKE_SOURCE_DIR/src)
 add_test(gx_comp::destroy test_comp_2)
+
+add_executable(test_comp_3 test_comp_3.c)
+target_link_libraries(test_comp_3 ${PROJECT_NAME})
+target_include_directories(test_comp_3 PRIVATE CMAKE_SOURCE_DIR/src)
+add_test(gx_comp::insert-return test_comp_3)
