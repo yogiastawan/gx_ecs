@@ -7,7 +7,7 @@ GxDLList gx_dllist_new(size_t size_bytes) {
   return ll;
 }
 
-void gx_dllist_append(GxDLList *ll, const void * const data) {
+void gx_dllist_append(GxDLList *ll, const void *const data) {
   size_t size = ll->size_bytes;
 
   GxNode *node = malloc(sizeof(GxNode));
@@ -43,8 +43,9 @@ void gx_dllist_delete(GxDLList *ll, const void *const at_data) {
 void gx_dllist_destroy(GxDLList *ll) {
   GxNode *node = ll->node;
   while (node) {
+    GxNode *tmp = node->next;
     free(node);
-    node = node->next;
+    node = tmp;
   }
   ll->node = NULL;
   ll->last_node = NULL;
