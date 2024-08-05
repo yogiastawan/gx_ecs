@@ -1,6 +1,8 @@
 #include <assert.h>
+#include <stdio.h>
 
 #include "gx_comp.h"
+#include "utils/gx_dllist.h"
 
 typedef struct {
   float x;
@@ -30,24 +32,23 @@ int main() {
   assert(gx_comp_storage_insert(&gcs, VELOCITY, &v) != NULL);
   assert(gx_comp_storage_insert(&gcs, VELOCITY, &v2) != NULL);
 
-  Position gcs_pos = ((Position **)gcs.comp)[POSITION][0];
+  Position gcs_pos = *(Position *)gcs.comp[POSITION]
+                          .node->data; //((Position **)gcs.comp)[POSITION][0];
+  printf(">>Pos: %f, %f, %f\n", gcs_pos.x, gcs_pos.y, gcs_pos.z);
   assert(pos.x == gcs_pos.x);
   assert(pos.y == gcs_pos.y);
   assert(pos.z == gcs_pos.z);
-  Velocity gcs_v2 = ((Velocity **)gcs.comp)[VELOCITY][1];
+
+  Velocity gcs_v2 = *(Velocity *)gcs.comp[VELOCITY].node->next->data;
+  printf(">>Vel: %f, %f, %f\n", gcs_v2.x, gcs_v2.y, gcs_v2.z);
   assert(v2.x == gcs_v2.x);
   assert(v2.y == gcs_v2.y);
   assert(v2.z == gcs_v2.z);
 
   gx_comp_destroy(&gcs);
 
-  assert(gcs.size_comp == NULL);
-  assert(gcs.size == NULL);
-  assert(gcs.cap == NULL);
-  Position **posi = ((Position **)gcs.comp);
-  assert(posi == NULL);
-  Velocity **ve = ((Velocity **)gcs.comp);
-  assert(ve == NULL);
+  GxDLList *comp = gcs.comp;
+  assert(comp == NULL);
 
   return 0;
 }
