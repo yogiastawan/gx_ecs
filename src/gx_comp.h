@@ -1,8 +1,11 @@
 #ifndef __GX_COMP_H__
 #define __GX_COMP_H__
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+
+#include "utils/gx_dllist.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,16 +18,13 @@ extern "C" {
 
 typedef struct {
   uint8_t numb_comp;
-  size_t *size_comp;
-  size_t *size;
-  size_t *cap;
-  void **comp;
+  GxDLList *comp;
 } GxCompStorage;
 
 GxCompStorage __gx_comp_storage_new(int numb_component, ...);
 void *gx_comp_storage_insert(GxCompStorage *cs, uint8_t type,
                              const void *const comp);
-void gx_comp_storage_remove(GxCompStorage *cs, uint8_t type, size_t pos);
+bool gx_comp_storage_remove(GxCompStorage *cs, uint8_t type, size_t pos);
 
 void gx_comp_destroy(GxCompStorage *cs);
 

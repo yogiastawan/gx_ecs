@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0...3.5.0)
 
-file(GLOB SRCS *.c)
+file(GLOB SRCS *.c utils/*.c)
 
 add_library(${PROJECT_NAME} ${SRCS})
 
