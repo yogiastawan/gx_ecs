@@ -14,3 +14,8 @@ add_executable(test_comp_3 test_comp_3.c)
 target_link_libraries(test_comp_3 ${PROJECT_NAME})
 target_include_directories(test_comp_3 PRIVATE CMAKE_SOURCE_DIR/src)
 add_test(gx_comp::insert-return test_comp_3)
+
+add_executable(test_comp_4 test_comp_4.c)
+target_link_libraries(test_comp_4 ${PROJECT_NAME})
+target_include_directories(test_comp_4 PRIVATE CMAKE_SOURCE_DIR/src)
+add_test(gx_comp::delete test_comp_4)
