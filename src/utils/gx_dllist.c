@@ -26,7 +26,7 @@ void gx_dllist_append(GxDLList *ll, const void *const data) {
   ll->last_node = node;
 }
 
-void gx_dllist_delete(GxDLList *ll, const void *const at_data) {
+void gx_dllist_delete(GxDLList *ll, const GxNode *const at_data) {
   GxNode *node = (GxNode *)at_data;
   if (ll->last_node == node) {
     ll->last_node = node->prev;
