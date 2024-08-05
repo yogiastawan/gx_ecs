@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-GxLList gx_llist_new(size_t size_bytes) {
-  GxLList ll = {.size_bytes = size_bytes, .node = NULL, .last_node = NULL};
+GxDLList gx_dllist_new(size_t size_bytes) {
+  GxDLList ll = {.size_bytes = size_bytes, .node = NULL, .last_node = NULL};
   return ll;
 }
 
-void gx_llist_append(GxLList *ll, const void *data) {
+void gx_dllist_append(GxDLList *ll, const void * const data) {
   size_t size = ll->size_bytes;
 
   GxNode *node = malloc(sizeof(GxNode));
@@ -26,7 +26,7 @@ void gx_llist_append(GxLList *ll, const void *data) {
   ll->last_node = node;
 }
 
-void gx_llist_delete(GxLList *ll, const void *const at_data) {
+void gx_dllist_delete(GxDLList *ll, const void *const at_data) {
   GxNode *node = (GxNode *)at_data;
   if (ll->last_node == node) {
     ll->last_node = node->prev;
@@ -40,7 +40,7 @@ void gx_llist_delete(GxLList *ll, const void *const at_data) {
   free(node);
 }
 
-void gx_llist_destroy(GxLList *ll) {
+void gx_dllist_destroy(GxDLList *ll) {
   GxNode *node = ll->node;
   while (node) {
     free(node);
