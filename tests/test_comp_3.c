@@ -27,10 +27,10 @@ int main() {
   GxCompStorage gcs =
       gx_comp_storage_new(NUMB_COMP, make_comp(Position), make_comp(Velocity));
 
-  Position *gcs_pos = gx_comp_storage_insert(&gcs, POSITION, &pos);
-  Velocity *gcs_v = gx_comp_storage_insert(&gcs, VELOCITY, &v);
-  Velocity *gcs_v2 = gx_comp_storage_insert(&gcs, VELOCITY, &v2);
-  Velocity *gcs_v3 = gx_comp_storage_insert(&gcs, VELOCITY, &v3);
+  Position *gcs_pos = gx_comp_storage_insert(&gcs, POSITION, &pos)->data;
+  Velocity *gcs_v = gx_comp_storage_insert(&gcs, VELOCITY, &v)->data;
+  Velocity *gcs_v2 = gx_comp_storage_insert(&gcs, VELOCITY, &v2)->data;
+  Velocity *gcs_v3 = gx_comp_storage_insert(&gcs, VELOCITY, &v3)->data;
   assert(gcs_pos != NULL);
   assert(gcs_v != NULL);
   assert(gcs_v2 != NULL);
