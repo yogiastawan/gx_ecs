@@ -27,7 +27,7 @@ void *gx_comp_storage_insert(GxCompStorage *cs, uint8_t type,
   }
 
   gx_dllist_append(&cs->comp[type], comp);
-  return cs->comp[type].last_node;
+  return cs->comp[type].last_node->data;
 }
 
 bool gx_comp_storage_remove(GxCompStorage *cs, uint8_t type, size_t pos) {
