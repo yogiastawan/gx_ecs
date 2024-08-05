@@ -30,16 +30,14 @@ void *gx_comp_storage_insert(GxCompStorage *cs, uint8_t type,
   return cs->comp[type].last_node->data;
 }
 
-bool gx_comp_storage_remove(GxCompStorage *cs, uint8_t type, size_t pos) {
+bool gx_comp_storage_remove(GxCompStorage *cs, uint8_t type,
+                            GxNode *node_comp) {
   if (type >= cs->numb_comp) {
     // Component type is out of range
     return false;
   }
 
-  // TODO!
-  // Get address component using variable post
-  void *addr = NULL;
-  gx_dllist_delete(&cs->comp[type], addr);
+  gx_dllist_delete(&cs->comp[type], node_comp);
 
   return true;
 }
