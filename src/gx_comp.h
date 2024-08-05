@@ -22,8 +22,8 @@ typedef struct {
 } GxCompStorage;
 
 GxCompStorage __gx_comp_storage_new(int numb_component, ...);
-void *gx_comp_storage_insert(GxCompStorage *cs, uint8_t type,
-                             const void *const comp);
+GxNode *gx_comp_storage_insert(GxCompStorage *cs, uint8_t type,
+                               const void *const comp);
 bool gx_comp_storage_remove(GxCompStorage *cs, uint8_t type, GxNode *node_comp);
 
 void gx_comp_destroy(GxCompStorage *cs);

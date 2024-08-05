@@ -20,14 +20,14 @@ GxCompStorage __gx_comp_storage_new(int numb_component, ...) {
 
   return cs;
 }
-void *gx_comp_storage_insert(GxCompStorage *cs, uint8_t type,
-                             const void *const comp) {
+GxNode *gx_comp_storage_insert(GxCompStorage *cs, uint8_t type,
+                               const void *const comp) {
   if (type >= cs->numb_comp) {
     return NULL;
   }
 
   gx_dllist_append(&cs->comp[type], comp);
-  return cs->comp[type].last_node->data;
+  return cs->comp[type].last_node;
 }
 
 bool gx_comp_storage_remove(GxCompStorage *cs, uint8_t type,
