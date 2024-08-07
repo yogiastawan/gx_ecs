@@ -19,9 +19,9 @@ exten "C" {
   GxEntityQueue gx_entity_queue_new();
   void gx_entity_queue_enqueue(GxEntityQueue * eq, size_t val);
   size_t gx_entity_queue_dequeue(GxEntityQueue * eq);
-  size_t gx_entity_queue_peek(GxEntityQueue * eq);
-  size_t gx_entity_queue_rear(GxEntityQueue * eq);
-  size_t gx_entity_queue_size(GxEntityQueue * eq);
+  size_t gx_entity_queue_peek(const GxEntityQueue *const eq);
+  size_t gx_entity_queue_rear(const GxEntityQueue *const eq);
+  size_t gx_entity_queue_size(const GxEntityQueue *const eq);
 
   void gx_entity_queue_destroy(GxEntityQueue * eq);
 

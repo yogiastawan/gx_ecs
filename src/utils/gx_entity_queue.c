@@ -67,17 +67,17 @@ size_t gx_entity_queue_dequeue(GxEntityQueue *eq) {
   return entt.id;
 }
 
-size_t gx_entity_queue_peek(GxEntityQueue *eq) {
+size_t gx_entity_queue_peek(const GxEntityQueue *const eq) {
   gx_assert(eq == NULL, "GxEntityQueue must be not NULL");
   return eq->node->val.id;
 }
 
-size_t gx_entity_queue_rear(GxEntityQueue *eq) {
+size_t gx_entity_queue_rear(const GxEntityQueue *const eq) {
   gx_assert(eq == NULL, "GxEntityQueue must be not NULL");
   return eq->rear->val.id;
 }
 
-size_t gx_entity_queue_size(GxEntityQueue *eq) {
+size_t gx_entity_queue_size(const GxEntityQueue *const eq) {
   gx_assert(eq == NULL, "GxEntityQueue must be not NULL");
   return eq->size;
 }
