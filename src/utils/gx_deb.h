@@ -18,7 +18,7 @@ extern "C" {
     }                                                                          \
   }
 #else
-#define gx_assert(x, msg)
+#define gx_assert(x, ...)
 #endif
 
 #ifdef __cplusplus
