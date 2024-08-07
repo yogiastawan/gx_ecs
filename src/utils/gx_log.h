@@ -15,30 +15,36 @@ extern "C" {
 
 #define log_i(...)                                                             \
   printf("GX_INFO:: ");                                                        \
-  printf(__VA_ARGS__)
+  printf(__VA_ARGS__);                                                         \
+  printf("\n")
 #define log_e(...)                                                             \
   fprintf(stderr, "GX_ERR:: ");                                                \
-  fprintf(stderr, __VA_ARGS__)
+  fprintf(stderr, __VA_ARGS__);                                                \
+  fprintf(stderr, "\n")
 
 #elif _WIN32
 #include <stdio.h>
 
 #define log_i(...)                                                             \
   printf("GX_INFO:: ");                                                        \
-  printf(__VA_ARGS__)
+  printf(__VA_ARGS__);                                                         \
+  printf("\n")
 #define log_e(...)                                                             \
   fprintf(stderr, "GX_ERR:: ");                                                \
-  fprintf(stderr, __VA_ARGS__)
+  fprintf(stderr, __VA_ARGS__);                                                \
+  fprintf(stderr, "\n")
 
 #else
 #include <stdio.h>
 
 #define log_i(...)                                                             \
   printf("GX_INFO:: ");                                                        \
-  printf(__VA_ARGS__)
+  printf(__VA_ARGS__);                                                         \
+  printf("\n")
 #define log_e(...)                                                             \
   fprintf(stderr, "GX_ERR:: ");                                                \
-  fprintf(stderr, __VA_ARGS__)
+  fprintf(stderr, __VA_ARGS__);                                                \
+  fprintf(stderr, "\n")
 
 #endif
 
