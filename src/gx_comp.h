@@ -22,7 +22,7 @@ typedef struct {
 GxCompStorage gx_comp_storage_new(int numb_component, va_list comps);
 GxNode *gx_comp_storage_insert(GxCompStorage *cs, uint8_t type,
                                const void *const comp);
-bool gx_comp_storage_remove(GxCompStorage *cs, uint8_t type, GxNode *node_comp);
+void gx_comp_storage_remove(GxCompStorage *cs, uint8_t type, GxNode *node_comp);
 
 void gx_comp_storage_destroy(GxCompStorage *cs);
 

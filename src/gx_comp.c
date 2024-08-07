@@ -1,4 +1,5 @@
 #include "gx_comp.h"
+#include "utils/gx_deb.h"
 #include "utils/gx_dllist.h"
 
 #include <stdarg.h>
@@ -28,16 +29,14 @@ GxNode *gx_comp_storage_insert(GxCompStorage *cs, uint8_t type,
   return cs->comp[type].last_node;
 }
 
-bool gx_comp_storage_remove(GxCompStorage *cs, uint8_t type,
+void gx_comp_storage_remove(GxCompStorage *cs, uint8_t type,
                             GxNode *node_comp) {
-  if (type >= cs->numb_comp) {
-    // Component type is out of range
-    return false;
-  }
+
+  gx_assert(type >= cs->numb_comp,
+            "Accessing type component %u when max number components is %u",
+            type, cs->numb_comp);
 
   gx_dllist_delete(&cs->comp[type], node_comp);
-
-  return true;
 }
 
 void gx_comp_storage_destroy(GxCompStorage *cs) {
