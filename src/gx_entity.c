@@ -60,7 +60,7 @@ GxEntity gx_entity_core_insert(GxEntityCore *ec, uint8_t comp_type,
   gx_assert(node == NULL, "Node must be not null");
 
   // insert to cache if there is cached.
-  if (gx_entity_queue_size(&ec->cache_entt) >= 0) {
+  if (gx_entity_queue_size(&ec->cache_entt) > 0) {
     size_t entt = gx_entity_queue_dequeue(&ec->cache_entt);
     gx_comp_mask_set_bit(&ec->mask[entt], comp_type);
     ec->node_array_ptr[comp_type][entt] = node;
@@ -153,6 +153,7 @@ GxQueryComp *gx_query_comp_get(GxEntityCore *ec, int n, va_list args) {
   GxQueryComp *qc = malloc(sizeof(GxQueryComp));
   qc->comp = malloc(sizeof(void *) * n);
   qc->cap = GX_DEF_QUERY_CAP;
+  qc->size = 0;
 
   uint8_t *comp = malloc(sizeof(uint8_t) * n);
 
@@ -200,6 +201,7 @@ GxQueryCompEntity *gx_query_comp_entity_get(GxEntityCore *ec, int n,
   qce->comp = malloc(sizeof(void *) * n);
   qce->entities = malloc(sizeof(GxEntity) * GX_DEF_QUERY_CAP);
   qce->cap = GX_DEF_QUERY_CAP;
+  qce->size = 0;
 
   uint8_t *comp = malloc(sizeof(uint8_t) * n);
 
