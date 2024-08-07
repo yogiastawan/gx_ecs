@@ -120,19 +120,6 @@ GxNode *gx_entity_core_remove_comp(GxEntityCore *ec, GxEntity entt,
   return tmp;
 }
 
-GxNode **gx_entity_core_remove_entity(GxEntityCore *ec, GxEntity entt) {
-  gx_assert(entt.id >= ec->numb_entt,
-            "Cannot Access entity id: %lu when max entity is %lu", entt.id,
-            ec->numb_entt);
-  GxNode **nodes = malloc(sizeof(GxNode *) * ec->numb_comp);
-  for (uint8_t i = 0; i < ec->numb_comp; i++) {
-    nodes[i] = ec->node_array_ptr[i][entt.id];
-    ec->node_array_ptr[i][entt.id] = NULL;
-  }
-
-  return nodes;
-}
-
 void gx_entity_core_destroy(GxEntityCore *ec) {
   gx_assert(!ec, "Cannot free of NULL GxEntityCore");
 

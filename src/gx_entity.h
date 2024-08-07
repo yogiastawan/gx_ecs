@@ -65,7 +65,6 @@ exten "C" {
                           GxNode * node);
   GxNode *gx_entity_core_remove_comp(GxEntityCore * ec, GxEntity entt,
                                      uint8_t comp_type);
-  GxNode **gx_entity_core_remove_entity(GxEntityCore * ec, GxEntity entt);
   void gx_entity_core_destroy(GxEntityCore * ec);
 
   GxQueryComp *gx_query_comp_get(GxEntityCore * ec, int n, va_list args);
