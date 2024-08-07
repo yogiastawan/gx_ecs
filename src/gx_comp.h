@@ -1,6 +1,7 @@
 #ifndef __GX_COMP_H__
 #define __GX_COMP_H__
 
+#include <stdarg.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -13,20 +14,17 @@ extern "C" {
 
 #define make_comp(x) sizeof(x)
 
-#define gx_comp_storage_new(numb_component, ...)                               \
-  __gx_comp_storage_new(numb_component, __VA_ARGS__);
-
 typedef struct {
   uint8_t numb_comp;
   GxDLList *comp;
 } GxCompStorage;
 
-GxCompStorage __gx_comp_storage_new(int numb_component, ...);
+GxCompStorage gx_comp_storage_new(int numb_component, va_list comps);
 GxNode *gx_comp_storage_insert(GxCompStorage *cs, uint8_t type,
                                const void *const comp);
 bool gx_comp_storage_remove(GxCompStorage *cs, uint8_t type, GxNode *node_comp);
 
-void gx_comp_destroy(GxCompStorage *cs);
+void gx_comp_storage_destroy(GxCompStorage *cs);
 
 #ifdef __cplusplus
 }

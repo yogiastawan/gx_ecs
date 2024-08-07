@@ -6,17 +6,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-GxCompStorage __gx_comp_storage_new(int numb_component, ...) {
+GxCompStorage gx_comp_storage_new(int numb_component, va_list comps) {
   GxCompStorage cs = {.numb_comp = (uint8_t)numb_component,
                       .comp = malloc(sizeof(GxDLList) * numb_component)};
-  va_list size;
-  va_start(size, numb_component);
+
   for (uint8_t i = 0; i < numb_component; i++) {
-    size_t s = va_arg(size, size_t);
+    size_t s = va_arg(comps, size_t);
 
     cs.comp[i] = gx_dllist_new(s);
   }
-  va_end(size);
 
   return cs;
 }
@@ -42,7 +40,7 @@ bool gx_comp_storage_remove(GxCompStorage *cs, uint8_t type,
   return true;
 }
 
-void gx_comp_destroy(GxCompStorage *cs) {
+void gx_comp_storage_destroy(GxCompStorage *cs) {
 
   for (uint8_t i = 0; i < cs->numb_comp; i++) {
     gx_dllist_destroy(&cs->comp[i]);
