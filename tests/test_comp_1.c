@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stdarg.h>
 
 #include "gx_comp.h"
 
@@ -16,6 +17,14 @@ typedef struct {
 
 enum Components { POSITION = 0, VELOCITY, NUMB_COMP };
 
+GxCompStorage create_comp(int n, ...) {
+  va_list args;
+  va_start(args, n);
+  GxCompStorage a = gx_comp_storage_new(n, args);
+  va_end(args);
+  return a;
+}
+
 int main() {
 
   Position pos = {0.0f, 0.3f, 0.1f};
@@ -24,7 +33,7 @@ int main() {
   Velocity v2 = {0.2f, -0.2f, 0.0f};
 
   GxCompStorage gcs =
-      gx_comp_storage_new(NUMB_COMP, make_comp(Position), make_comp(Velocity));
+      create_comp(NUMB_COMP, make_comp(Position), make_comp(Velocity));
 
   assert(gx_comp_storage_insert(&gcs, POSITION, &pos) != NULL);
   assert(gx_comp_storage_insert(&gcs, VELOCITY, &v) != NULL);
@@ -40,6 +49,6 @@ int main() {
   assert(v2.y == gcs_v2.y);
   assert(v2.z == gcs_v2.z);
 
-  gx_comp_destroy(&gcs);
+  gx_comp_storage_destroy(&gcs);
   return 0;
 }
