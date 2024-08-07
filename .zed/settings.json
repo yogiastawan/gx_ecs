@@ -1,0 +1,6 @@
+{
+  "file_types": {
+    "C": ["h"]
+  },
+  "always_treat_brackets_as_autoclosed": true
+}
